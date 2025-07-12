@@ -82,7 +82,4 @@ defineExpose({
 });
 </script>
 <style lang="scss" scoped>
-.color {
-  color: red;
-}
 </style>
