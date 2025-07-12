@@ -49,6 +49,8 @@ jobs:
           cache: pnpm # 或 npm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
+        with:
+          enablement: force # 强制启用Pages站点
       - name: Install dependencies
         run: pnpm install # 或 npm ci / yarn install / bun install
       - name: Build with VitePress
