@@ -1,8 +1,10 @@
 import type { App } from 'vue'
 import { DlTable } from './components/index'
+import { DlForm } from './components/index'
 
 const components = [
     DlTable,
+    DlForm,
 ]
 
 const install = (app: App) => {
@@ -12,7 +14,8 @@ const install = (app: App) => {
 }
 
 export {
-    DlTable
+    DlTable,
+    DlForm,
 }
 
 export default { install }

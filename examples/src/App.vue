@@ -1,5 +1,20 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
+// import HelloWorld from "./components/HelloWorld.vue";
+const formList = ref([
+  { label: "姓名", prop: "name", type: "input" },
+  { label: "年龄", prop: "age", type: "input" },
+  {
+    label: "性别",
+    prop: "gender",
+    type: "select",
+    options: [
+      { label: "男", value: "男" },
+      { label: "女", value: "女" }
+    ]
+  }
+]);
+const formData = ref({ name: "", age: "", gender: "" });
 </script>
 
 <template>
@@ -11,9 +26,18 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 
-  <DlTable :data="[{name: '123', age: 18, gender: '男'}]" :columns="[{prop: 'name', label: '姓名'}, {prop: 'age', label: '年龄'}, {prop: 'gender', label: '性别'}]">新增</DlTable>
+  <DlForm v-model="formData" :form-list="formList" />
+  
+  <DlTable
+    :data="[{ name: '123', age: 18, gender: '男' }]"
+    :columns="[
+      { prop: 'name', label: '姓名' },
+      { prop: 'age', label: '年龄' },
+      { prop: 'gender', label: '性别' }
+    ]"
+    >新增</DlTable
+  >
 </template>
 
 <style scoped>

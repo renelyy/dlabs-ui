@@ -1,6 +1,19 @@
 declare module 'dlabs-ui' {
-  import { App } from 'vue'
-  const install: (app: App) => void
-  export default install
-  // 导出所有组件类型
+  import { App } from 'vue';
+  import type { Component } from 'vue';
+
+  export interface FormItemConfig {
+    label: string;
+    prop: string;
+    type: 'input' | 'number' | 'select' | (() => Component);
+    [key: string]: any;
+  }
+
+  export const DlForm: Component;
+  export const DlTable: Component;
+
+  const install: (app: App) => void;
+
+  export { DlForm, DlTable, FormItemConfig };
+  export default install;
 }
