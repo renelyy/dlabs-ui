@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'DlabsUI',
   description: 'A UI library',
+  base: '/dlabs-ui/',
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
