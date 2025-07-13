@@ -1,20 +1,61 @@
 <script setup lang="ts">
-import { ref } from "vue";
-// import HelloWorld from "./components/HelloWorld.vue";
-const formList = ref([
-  { label: "姓名", prop: "name", type: "input" },
-  { label: "年龄", prop: "age", type: "input" },
+import type { FormItemConfig } from "dlabs-ui";
+import { computed, ref } from "vue";
+
+const formData = ref({ name: "", age: "", gender: "" });
+const formList = computed(() => [
+  { label: "姓名", prop: "name", type: "input", disabled: false },
+  {
+    label: "年龄",
+    prop: "age",
+    type: "input",
+    disabled: formData.value.name === "张三"
+  },
+  { label: "部门", prop: "department", type: "input" },
+  {
+    label: "负责人",
+    prop: "leader",
+    type: "select",
+    options: [],
+    dependencies: ["department", "name"],
+    placeholder: "请选择负责人",
+    loadOptions: async (newFormData: any, dependencies: string[]) => {
+      const params: any = {};
+      dependencies.forEach(key => {
+        params[key] = newFormData[key];
+      });
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve([
+            { label: "张三", value: "张三" },
+            { label: "李四", value: "李四" },
+            { label: "王五", value: "王五" }
+          ]);
+        }, 1000);
+      });
+    }
+  },
   {
     label: "性别",
     prop: "gender",
     type: "select",
+    hidden: formData.value.name === "张三",
+    placeholder: "请选择",
     options: [
       { label: "男", value: "男" },
       { label: "女", value: "女" }
     ]
   }
 ]);
-const formData = ref({ name: "", age: "", gender: "" });
+
+const handleChange = (
+  prop: string,
+  value: any,
+  formData: any,
+  formList: FormItemConfig[]
+) => {
+  console.log(prop, value, formData, formList);
+};
 </script>
 
 <template>
@@ -27,8 +68,13 @@ const formData = ref({ name: "", age: "", gender: "" });
     </a>
   </div>
 
-  <DlForm v-model="formData" :form-list="formList" />
-  
+  <DlForm
+    :cols="3"
+    v-model="formData"
+    :form-list="formList"
+    @change="handleChange"
+  />
+
   <DlTable
     :data="[{ name: '123', age: 18, gender: '男' }]"
     :columns="[

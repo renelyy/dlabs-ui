@@ -41,6 +41,20 @@ const formList = [
       { label: '男', value: 'male' },
       { label: '女', value: 'female' }
     ]
+  },
+  { 
+    prop: 'city', 
+    label: '城市', 
+    type: 'select', 
+    dependencies: ['gender'],
+    loadOptions: async (formData) => {
+      // 模拟根据性別加载不同城市选项
+      const cityMap = {
+        male: [{ label: '北京', value: 'beijing' }, { label: '上海', value: 'shanghai' }],
+        female: [{ label: '广州', value: 'guangzhou' }, { label: '深圳', value: 'shenzhen' }]
+      };
+      return cityMap[formData.gender] || [];
+    }
   }
 ];
 
@@ -76,9 +90,11 @@ const handleSubmit = () => {
 | label | string | 标签文本 |
 | type | 'input' \| 'input-number' \| 'select' \| 'radio' \| 'checkbox' | 表单组件类型 |
 | placeholder | string | 输入提示文本 |
-| options | { label: string, value: any }[] | 选择类组件的选项 |
+| options | { label: string, value: any }[] | 选择类组件的静态选项 |
 | min | number | 数字输入框最小值 |
 | max | number | 数字输入框最大值 |
+| dependencies | string[] | 依赖的字段列表，用于级联更新 |
+| loadOptions | (formData: Record<string, any>, dependencies: string[]) => Promise<{ label: string, value: any }[]> | 动态加载选项的函数，当依赖字段变化时触发 |
 | step | number | 数字输入框步长 |
 
 ## 事件
