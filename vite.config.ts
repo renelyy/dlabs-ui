@@ -23,7 +23,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['vue', 'element-plus'],
+      external: (id) => /^vue/.test(id) || /^element-plus/.test(id),
       output: {
         exports: 'named',
         globals: {
