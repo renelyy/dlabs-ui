@@ -5,7 +5,7 @@
         <el-form-item :label="form.label" :label-width="props.labelWidth || form.labelWidth || '120px'"
           :prop="form.prop">
           <component :is="getComponent(form)" v-model="model[form.prop]" v-bind="getProps(form)"
-            @change="onChange(form, $event)">
+            @change="onChange(form)">
             <el-option v-if="form.type === 'select' && form.options" v-for="(option, index) in form.options"
               :key="index" :label="option.label" :value="option.value"></el-option>
           </component>
@@ -85,7 +85,7 @@ const __formList = computed(() => props.formList.filter(item => !item.hidden));
 
 const formInstance = useTemplateRef<FormInstance>("formRef");
 
-const onChange = async (form: FormItemConfig, event: Event) => {
+const onChange = async (form: FormItemConfig) => {
   emit(
     "change",
     form.prop,
