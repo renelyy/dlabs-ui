@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
-import './style.css'
+// import './style.css'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import DlabsUI from 'dlabs-ui'
+// 从本地路径导入 DlabsUI
+import DlabsUI from '../../packages/index.ts'
 
 const app = createApp(App)
 app.use(ElementPlus)

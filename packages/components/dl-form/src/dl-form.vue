@@ -1,25 +1,13 @@
 <template>
-  <el-form ref="formRef" :rules="rules" class="color">
+  <el-form ref="formRef" :rules="rules" class="color" :model="model" :label-position="props.labelPosition || 'right'">
     <el-row :gutter="getGutter()">
       <el-col v-for="form in __formList" :key="form.prop" :span="getSpan(form)">
-        <el-form-item
-          :label="form.label"
-          :label-width="props.labelWidth || form.labelWidth || '120px'"
-          :prop="form.prop"
-        >
-          <component
-            :is="getComponent(form)"
-            v-model="model[form.prop]"
-            v-bind="getProps(form)"
-            @change="onChange(form, $event)"
-          >
-            <el-option
-              v-if="form.type === 'select' && form.options"
-              v-for="(option, index) in form.options"
-              :key="index"
-              :label="option.label"
-              :value="option.value"
-            ></el-option>
+        <el-form-item :label="form.label" :label-width="props.labelWidth || form.labelWidth || '120px'"
+          :prop="form.prop">
+          <component :is="getComponent(form)" v-model="model[form.prop]" v-bind="getProps(form)"
+            @change="onChange(form, $event)">
+            <el-option v-if="form.type === 'select' && form.options" v-for="(option, index) in form.options"
+              :key="index" :label="option.label" :value="option.value"></el-option>
           </component>
         </el-form-item>
       </el-col>
@@ -66,7 +54,12 @@ const props = defineProps<{
   /**
    * 表单标签宽度
    */
-  labelWidth?: string;
+  labelWidth?: string | number;
+
+  /**
+   * 标签位置
+   */
+  labelPosition?: 'left' | 'top' | 'right';
 }>();
 
 const emit = defineEmits<{

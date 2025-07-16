@@ -7,5 +7,5 @@ DlForm.install = (app: App) => {
 
 export { DlForm };
 export default DlForm;
-export * from './src/dl-form.vue';
+// export * from './src/dl-form.vue';
 export * from './src/types';

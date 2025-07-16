@@ -8,7 +8,7 @@
     </el-table>
 </template>
 
-<script setup lang="ts" >
+<script setup lang="ts">
 import { defineProps, defineOptions } from 'vue'
 
 interface Props {
