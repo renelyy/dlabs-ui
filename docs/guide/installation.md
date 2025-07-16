@@ -11,6 +11,11 @@
 npm install dlabs-ui --save
 ```
 
+### yarn
+```bash
+yarn add dlabs-ui
+```
+
 ### pnpm
 ```bash
 pnpm add dlabs-ui

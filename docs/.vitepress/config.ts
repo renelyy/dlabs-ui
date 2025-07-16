@@ -4,8 +4,14 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'DlabsUI',
   description: 'A UI library',
-  base: '/dlabs-ui/',
+  base: '/',
   themeConfig: {
+    logo: {
+      light: '/assets/logo-light.png', // 使用绝对路径
+      dark: '/assets/logo-dark.png',  // 使用绝对路径
+      text: 'DlabsUI',
+      link: '/',
+    },
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/' },
@@ -22,6 +28,7 @@ export default defineConfig({
         }
       ],
       '/components/': [
+        { text: '组件清单', link: '/components/' },
         { text: 'DlTable', link: '/components/dl-table' },
         { text: 'DlForm', link: '/components/dl-form' }
       ]

@@ -1,85 +1,63 @@
-# Markdown Extension Examples
+# DlabsUI 组件 Markdown 示例
 
-This page demonstrates some of the built-in markdown extensions provided by VitePress.
+本页展示如何在 Markdown 中直接使用 DlabsUI 组件。
 
-## Syntax Highlighting
+## DlTable 组件示例
 
-VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
+```vue
+<template>
+  <DlTable
+    :columns="columns"
+    :data="tableData"
+    stripe
+    border
+  />
+</template>
 
-**Input**
+<script setup>
+import { DlTable } from 'dlabs-ui';
 
-````md
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
+const columns = [
+  { label: '姓名', prop: 'name', width: 120 },
+  { label: '职位', prop: 'position', width: 180 },
+  { label: '部门', prop: 'department' }
+];
+
+const tableData = [
+  { name: '张三', position: '前端开发工程师', department: '研发部' },
+  { name: '李四', position: '产品经理', department: '产品部' }
+];
+</script>
+```
+
+## DlForm 组件示例
+
+```vue
+<template>
+  <DlForm
+    :formList="formList"
+    v-model="formData"
+    inline
+  />
+</template>
+
+<script setup>
+import { DlForm } from 'dlabs-ui';
+import { ref } from 'vue';
+
+const formData = ref({ name: '', status: '' });
+
+const formList = [
+  { prop: 'name', label: '姓名', type: 'input', placeholder: '请输入姓名' },
+  { 
+    prop: 'status', 
+    label: '状态', 
+    type: 'select', 
+    options: [
+      { label: '启用', value: 'active' },
+      { label: '禁用', value: 'inactive' }
+    ]
   }
-}
+];
+</script>
 ```
-````
-
-**Output**
-
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
-}
-```
-
-## Custom Containers
-
-**Input**
-
-```md
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-```
-
-**Output**
-
-::: info
-This is an info box.
-:::
-
-::: tip
-This is a tip.
-:::
-
-::: warning
-This is a warning.
-:::
-
-::: danger
-This is a dangerous warning.
-:::
-
-::: details
-This is a details block.
-:::
-
-## More
-
-Check out the documentation for the [full list of markdown extensions](https://vitepress.dev/guide/markdown).

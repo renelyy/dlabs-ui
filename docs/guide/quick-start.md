@@ -33,6 +33,24 @@ app.mount('#app')
 
 ## 基础示例
 
+### 按钮组件
+
+```vue
+<template>
+  <dl-button type="primary" @click="handleClick">点击我</dl-button>
+</template>
+
+<script setup>
+import { DlButton } from 'dlabs-ui';
+
+const handleClick = () => {
+  alert('按钮被点击了');
+};
+</script>
+```
+
+### 表格组件
+
 以下是一个简单的 DlTable 使用示例：
 
 ```vue
