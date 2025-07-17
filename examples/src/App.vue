@@ -79,6 +79,23 @@ const handleClick = () => {
     console.error(err)
   })
 }
+
+const handleToolbarClick = (type: string) => {
+  switch (type) {
+    case 'add':
+      // 处理新增
+      break
+    case 'edit':
+      // 处理编辑
+      break
+    case 'remove':
+      // 处理删除
+      break
+    case 'refresh':
+      // 处理刷新
+      break
+  }
+}
 </script>
 
 <template>
@@ -88,6 +105,7 @@ const handleClick = () => {
 
     <el-button @click="handleClick">确定</el-button>
 
+    <DlToolbar :buttons="['add', 'edit', 'remove', 'refresh']" :disabled="false" @click="handleToolbarClick" />
     <DlTable :data="[{ name: '123', age: 18, gender: '男' }]" :columns="[
       { prop: 'name', label: '姓名' },
       { prop: 'age', label: '年龄' },
