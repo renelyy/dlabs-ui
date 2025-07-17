@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormItemConfig } from "dlabs-ui";
+import type { FormItemConfig } from "../../packages/components/dl-form/src/types";
 import { computed, ref, useTemplateRef } from "vue";
 import type { FormInstance } from "element-plus";
 

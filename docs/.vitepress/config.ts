@@ -4,7 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'DlabsUI',
   description: 'A UI library',
-  base: '/',
+  base: '/dlsbs-ui/',
   themeConfig: {
     logo: {
       light: '/logo-light.png', // 使用相对路径
