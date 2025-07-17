@@ -7,8 +7,8 @@ export default defineConfig({
   base: '/',
   themeConfig: {
     logo: {
-      light: '/assets/logo-light.png', // 使用绝对路径
-      dark: '/assets/logo-dark.png',  // 使用绝对路径
+      light: '/logo-light.png', // 使用相对路径
+      dark: '/logo-light.png',  // 使用相对路径
       text: 'DlabsUI',
       link: '/',
     },
