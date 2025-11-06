@@ -10,7 +10,7 @@ const formList = computed(() => [
     label: "年龄",
     prop: "age",
     type: "input",
-    disabled: formData.value.name === "张三",
+    disabled: formData.value.name === "张三"
   },
   { label: "部门", prop: "department", type: "input" },
   {
@@ -49,16 +49,10 @@ const formList = computed(() => [
   }
 ]);
 const rules = ref({
-  name: [
-    { required: true, message: '请输入姓名', trigger: 'blur' },
-  ],
-  age: [
-    { required: true, message: '请输入年龄', trigger: 'blur' },
-  ],
-  gender: [
-    { required: true, message: '请选择性别', trigger: 'change' },
-  ],
-})
+  name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+  age: [{ required: true, message: "请输入年龄", trigger: "blur" }],
+  gender: [{ required: true, message: "请选择性别", trigger: "change" }]
+});
 const formInstance = useTemplateRef<FormInstance>("formRef");
 
 const handleChange = (
@@ -71,46 +65,91 @@ const handleChange = (
 };
 
 const handleClick = () => {
-  formInstance.value?.validate().then(res => {
-    if (res) {
-      console.log(formData.value);
-    }
-  }).catch(err => {
-    console.error(err)
-  })
-}
+  formInstance.value
+    ?.validate()
+    .then(res => {
+      if (res) {
+        console.log(formData.value);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+    });
+};
 
 const handleToolbarClick = (type: string) => {
   switch (type) {
-    case 'add':
+    case "add":
       // 处理新增
-      break
-    case 'edit':
+      break;
+    case "edit":
       // 处理编辑
-      break
-    case 'remove':
+      break;
+    case "remove":
       // 处理删除
-      break
-    case 'refresh':
+      break;
+    case "refresh":
       // 处理刷新
-      break
+      break;
   }
-}
+};
 </script>
 
 <template>
   <div>
-    <DlForm ref="formRef" :rules="rules" :label-width="80" :cols="3" v-model="formData" :form-list="formList"
-      @change="handleChange"></DlForm>
+    <DlForm
+      ref="formRef"
+      :rules="rules"
+      :label-width="80"
+      :cols="3"
+      v-model="formData"
+      :form-list="formList"
+      @change="handleChange"
+    ></DlForm>
 
     <el-button @click="handleClick">确定</el-button>
 
-    <DlToolbar :buttons="['add', 'edit', 'remove', 'refresh']" :disabled="false" @click="handleToolbarClick" />
-    <DlTable :data="[{ name: '123', age: 18, gender: '男' }]" :columns="[
-      { prop: 'name', label: '姓名' },
-      { prop: 'age', label: '年龄' },
-      { prop: 'gender', label: '性别' }
-    ]">新增</DlTable>
+    <!-- <DlToolbar
+      :buttons="['add', 'edit', 'remove', 'refresh']"
+      :disabled="false"
+      @click="handleToolbarClick"
+    /> -->
+    <DlTable
+      border
+      :data="[{ name: '123', age: 18, gender: '男', ss: '456' }]"
+      :columns="[
+        { prop: 'name1', label: '姓名' },
+        { prop: 'name2', label: '姓名' },
+        { prop: 'name3', label: '姓名' },
+        {
+          prop: 'ss',
+          label: 'ss',
+          type: 'select',
+          selectOption: [
+            { label: '123', value: '123' },
+            { label: '456', value: '456' }
+          ]
+        },
+        { prop: 'name4', label: '姓名' },
+        { prop: 'name5', label: '姓名' },
+        { prop: 'name6', label: '姓名' },
+        { prop: 'name7', label: '姓名' },
+        { prop: 'name8', label: '姓名' },
+        { prop: 'name9', label: '姓名' },
+        { prop: 'age', label: '年龄' },
+        { prop: 'age', label: '年龄' },
+        { prop: 'age', label: '年龄' },
+        { prop: 'gender', label: '性别' },
+        { prop: 'dept', label: '部门' },
+        { prop: 'dept', label: '部门' },
+        { prop: 'dept', label: '部门' },
+        { prop: 'dept', label: '部门' },
+        { prop: 'dept', label: '部门' },
+        { prop: 'leader', label: '负责人负责人负责人负责人' },
+        { prop: 'operation', label: '操作', slot: 'operation' }
+      ]"
+      >新增</DlTable
+    >
   </div>
   <!-- <div>
     <a href="https://vite.dev" target="_blank">

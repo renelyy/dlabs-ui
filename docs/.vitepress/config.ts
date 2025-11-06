@@ -29,8 +29,8 @@ export default defineConfig({
       ],
       '/components/': [
         { text: '组件清单', link: '/components/' },
-        { text: 'DlTable', link: '/components/dl-table' },
-        { text: 'DlForm', link: '/components/dl-form' }
+        { text: 'DlTable 表格', link: '/components/dl-table' },
+        { text: 'DlForm 表单', link: '/components/dl-form' }
       ]
     }
   }
